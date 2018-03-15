@@ -29,3 +29,8 @@ Each Campground has :
 * Add a better header/title
 * Make campgrounds display in a grid
 
+## Style the Navbar and form
+
+* Add a navbar to all templates
+* Style the new campground form
+

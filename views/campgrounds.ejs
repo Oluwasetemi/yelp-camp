@@ -7,20 +7,31 @@
         <p class="lead">Welcome to my yelp camp project and view my hand picked camp from around the world</p>
         <p>
           <a class="btn btn-primary btn-large" href="/campgrounds/new">Add New Campgrounds</a>
-        </p> 
+        </p>
       </div>
     </header>
 
-
-
-    <% campgrounds.forEach((campground) => { %>
-      <div>
-        <h4>
-          <%= campground.name %>
-        </h4>
-        <img src="<%= campground.image %>" alt="campground-image">
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Our most popular Campgrounds</h3>
       </div>
-      <% }) %>
+    </div>
+
+    <div class="row">
+      <% campgrounds.forEach((campground) => { %>
+        <div class="col-md-3 col-sm-6">
+          <div class="card">
+            <img class="card-img-top" src="<%= campground.image %>" alt="campground-image">
+            <div class="card-title">
+              <h4>
+                <%= campground.name %>
+              </h4>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+
   </div>
 
   <% include partials/footer %>
