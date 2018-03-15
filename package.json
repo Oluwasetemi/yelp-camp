@@ -1,0 +1,22 @@
+{
+  "name": "yelp-camp",
+  "version": "0.0.1",
+  "description": "web developer project from udemy",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oluwasetemi/yelp-camp.git"
+  },
+  "keywords": [
+    "yelp-camp"
+  ],
+  "author": "ojo oluwsetemi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Oluwasetemi/yelp-camp/issues"
+  },
+  "homepage": "https://github.com/Oluwasetemi/yelp-camp#readme"
+}
