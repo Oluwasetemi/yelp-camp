@@ -38,7 +38,7 @@ Each Campground has :
 
 * Install and configure Mongoose
 * Setup campground model
-* Use campground model inside of our routes 
+* Use campground model inside of our routes
 
 ## Show Page
 
@@ -47,9 +47,19 @@ Each Campground has :
 * Show db.collection.drop()
 * Add a show route/template
 
-## Refactor Mongoose `
+## Refactor Mongoose
 
 * Create a models directory
 * Use module.exports
 * Require everything correctly!
 
+## Add the Comment model!
+
+* Make our error go away!
+* Display comments on campground show page
+
+## Comment New/ Create
+
+* Discuss nested routes
+* Add the comment new and create routes
+* Add the new comment form
