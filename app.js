@@ -58,15 +58,18 @@ app.get('/campgrounds/:id', (req, res) => {
 });
 /**
 |--------------------------------------------------
-| Comment ROutes
+| Comment Routes
 |--------------------------------------------------
 */
 app.get('/campgrounds/:id/comments/new', (req, res) => {
   const {id} = req.params;
   Campground.findById(id, (err, campground) => {
-    ifelse
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('comments/new', {campground: campground})
+    }
   })
-  res.render('comments/new')
 });
 
 app.post('/campgrounds/:id/comments', (req, res) => {

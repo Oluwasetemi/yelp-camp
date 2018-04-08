@@ -2,18 +2,17 @@
 
   <div class="container">
     <div class="row">
-        <h1 style="text-align: center">Add New Comment to <%= campground.name %> </h1>
+      <h1 style="text-align: center">Add New Comment to
+        <%= campground.name %>
+      </h1>
 
       <div style="width: 30%; margin: 20px auto">
-        <form action="/campgrounds/<%= campground._id %>" method="POST">
+        <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
           <div class="form-group">
-            <input class="form-control" type="text" name="name" id="name" placeholder="Enter the camp Name">
+            <input class="form-control" type="text" name="comment[text]" id="text" placeholder="Enter the comment text">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" name="image" id="image" placeholder="Enter the image link">
-          </div>
-          <div class="form-group">
-            <input class="form-control" type="text" name="description" id="description" placeholder="Enter the description of the camp">
+            <input class="form-control" type="text" name="comment[author]" id="author" placeholder="Enter the author">
           </div>
           <div class="form-group">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
@@ -24,4 +23,4 @@
     </div>
   </div>
 
-<% include ../partials/footer %>
+  <% include ../partials/footer %>

@@ -3,9 +3,30 @@
   <div class="container">
     <div class="row">
       <h1>This is a show Page</h1>
-      <br/>  
-      <div class="card"></div>
+      <br/>
+      <div class="card">
+        
+      </div>
     </div>
   </div>
 
-  <% include ../partials/footer %>
+  <h1>
+    <%= campground.name %>
+  </h1>
+
+  <p>
+    <%= campground.description %>
+  </p>
+
+  <img src="<%= campground.image %>" alt="campground">
+
+  <%  campground.comments.forEach((comment) => { %>
+    <p>
+      <strong>
+        <%= comment.author  %>
+      </strong> -
+      <%= comment.text %>
+    </p>
+  <%  }) %>
+
+<% include ../partials/footer %>
