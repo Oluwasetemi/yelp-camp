@@ -2,42 +2,54 @@
 
   <div class="container">
     <div class="row">
-      <h1>This is a show Page</h1>
-      <div class="col-3">
+      <div class="col-md-3 pt-4">
         <p class="lead">side bar</p>
-        <br/>
         <div class="list-group">
           <li class="list-group-item active">list 1</li>
           <li class="list-group-item">list 2</li>
           <li class="list-group-item">list 3</li>
         </div>
+      </div>
+      <div class="col-md-9 pt-4">
         <div class="card">
+          <img class="card-img-top" src="<%= campground.image %>" alt="campground">
+          <div class="card-body">
+            <h1 class="card-title">
+              <%= campground.name %>
+            </h1>
+            <h4 class="text-right">
+              $9.00/night
+            </h4>
 
+            <p class="card-text">
+              <%= campground.description %>
+            </p>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="card-body">
+            <div class="text-right">
+              <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+            </div>
+            <hr>
+            <% campground.comments.forEach((comment) => { %>
+              <div class="row">
+                <div class="col-md-12">
+                  <%= comment.author %>
+                    <p class="text-right">10 days ago</p>
+                    <p>
+                      <%= comment.text %>
+                    </p>
+                </div>
+              </div>
+            <%  }) %>
+
+          </div>
         </div>
       </div>
-      <div class="col-9">
-        Card
-      </div>
+
     </div>
-  </div>
 
-  <h1>
-    <%= campground.name %>
-  </h1>
 
-  <p>
-    <%= campground.description %>
-  </p>
 
-  <img src="<%= campground.image %>" alt="campground">
-
-  <%  campground.comments.forEach((comment) => { %>
-    <p>
-      <strong>
-        <%= comment.author  %>
-      </strong> -
-      <%= comment.text %>
-    </p>
-    <%  }) %>
-
-      <% include ../partials/footer %>
+    <% include ../partials/footer %>
