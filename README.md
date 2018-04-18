@@ -93,10 +93,19 @@ Add custom stylesheet
 ## Auth Part 4 - Logout/ Navbar
 
 * Add logout route
-* Prevent user from adding a comment if not signed in 
+* Prevent user from adding a comment if not signed in
 * Add links to navbar
 * Show/hide auth links correctly
 
 ## Auth Part 5 - Show/ Hide links
 
 * Show/ hide auth link in navbar correctly
+
+## Refactor The Routes
+
+* Use Express router to recognize all routes
+
+## Users + Comments
+
+* Associate users and comments
+* Save author's name to a comment automatically
