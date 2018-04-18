@@ -5,7 +5,7 @@ const Campground = require('../model/campground')
 
 
 router.get("", (req, res) => {
-  console.log(req.user)
+  // console.log(req.user)
   Campground.find({}, (err, allCampgrounds) => {
     if (err) {
       console.log('err');
@@ -37,7 +37,7 @@ router.get('/:id', (req, res) => {
     if (err) {
       console.log('err'); 
     } else {
-      console.log(foundCampground);
+      // console.log(foundCampground);
       res.render('campgrounds/show', {campground: foundCampground})
     }
   })
