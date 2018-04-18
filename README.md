@@ -68,3 +68,13 @@ Each Campground has :
 
 * Add sidebar to show page
 * Display comments nicely
+
+## Finish Styling Show Page
+
+Add public directory
+Add custom stylesheet
+
+## Add Use model
+
+* Install all packages needed for auth
+* Define User model
