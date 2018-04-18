@@ -74,7 +74,29 @@ Each Campground has :
 Add public directory
 Add custom stylesheet
 
-## Add Use model
+## Auth Part 1 - Add Use model
 
 * Install all packages needed for auth
 * Define User model
+
+## Auth Part 2 - Register
+
+* Configure Passport
+* Add register routes
+* Add register template
+
+## Auth Part 3 - Login
+
+* Add login routes
+* Add login template
+
+## Auth Part 4 - Logout/ Navbar
+
+* Add logout route
+* Prevent user from adding a comment if not signed in 
+* Add links to navbar
+* Show/hide auth links correctly
+
+## Auth Part 5 - Show/ Hide links
+
+* Show/ hide auth link in navbar correctly
