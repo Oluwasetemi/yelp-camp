@@ -9,6 +9,8 @@ var Comment = require('./model/comment')
 var User = require('./model/user')
 var seedDB = require('./seed')
 
+const commentRoutes = require('./routes/comments')
+
 mongoose.connect("mongodb://localhost/yelp_camp");
 
 app.set("view engine", "ejs");
