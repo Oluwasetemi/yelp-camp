@@ -4,8 +4,8 @@ var router = express.Router();
 const Campground = require('../model/campground')
 
 
-router.get("", (req, res) => {
-  // console.log(req.user)
+router.get("/", (req, res) => {
+  console.log(req.user)
   Campground.find({}, (err, allCampgrounds) => {
     if (err) {
       console.log('err');
@@ -15,11 +15,11 @@ router.get("", (req, res) => {
   })
 });
 
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
   res.render("campgrounds/new");
 });
 
-router.post("", (req, res) => {
+router.post("/", isLoggedIn, (req, res) => {
   const { name, image, description } = req.body;
   // console.log(name, image);
   const newCampground = { name: name, image: image, description: description };
@@ -42,5 +42,12 @@ router.get('/:id', (req, res) => {
     }
   })
 });
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.redirect('/login')
+}
 
 module.exports = router

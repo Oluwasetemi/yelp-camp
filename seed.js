@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+ var mongoose = require('mongoose')
 var Campground = require('./model/campground')
 var Comment = require('./model/comment')
 
@@ -22,7 +22,10 @@ var data = [
 
 function seedDB() {
   Campground.remove({}, (err) => {
-    console.log('data removed')
+   /*  if(err) {
+      console.log(err);
+    }
+    // console.log('data removed')
     data.forEach((seed) => {
       Campground.create(seed, (err, campground) => {
         if (err) {
@@ -43,8 +46,8 @@ function seedDB() {
           })
         }
       })
-    })
-  })
+    }) */
+  }) 
 }
 
 module.exports = seedDB
