@@ -5,7 +5,7 @@ const Campground = require('../model/campground')
 
 
 router.get("/", (req, res) => {
-  console.log(req.user)
+  // console.log(req.user)
   Campground.find({}, (err, allCampgrounds) => {
     if (err) {
       console.log('err');
@@ -20,9 +20,14 @@ router.get("/new", isLoggedIn, (req, res) => {
 });
 
 router.post("/", isLoggedIn, (req, res) => {
-  const { name, image, description } = req.body;
-  // console.log(name, image);
-  const newCampground = { name: name, image: image, description: description };
+  const { name, image, description } = req.body
+  const {id, username} = req.user
+  const author = {
+    id,
+    username
+  }
+  const newCampground = { name: name, image: image, description: description, author: author };
+  // console.log(author);
   Campground.create(newCampground, (err, newlyCreated) => {
     if (err) {
       console.log(err);

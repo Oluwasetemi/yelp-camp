@@ -24,6 +24,11 @@
             <p class="card-text">
               <%= campground.description %>
             </p>
+            <p class="card-text">
+              <em>Submitted By
+                <%= campground.author.username %>
+              </em>
+            </p>
           </div>
         </div>
         <div class="card mt-4">
@@ -42,7 +47,7 @@
                     </p>
                 </div>
               </div>
-            <%  }) %>
+              <%  }) %>
 
           </div>
         </div>
