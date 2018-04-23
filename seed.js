@@ -22,7 +22,7 @@ var data = [
 
 function seedDB() {
   Campground.remove({}, (err) => {
-   /*  if(err) {
+    /* if(err) {
       console.log(err);
     }
     // console.log('data removed')
