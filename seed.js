@@ -1,4 +1,7 @@
- var mongoose = require('mongoose')
+//mongodb://admin:admin@ds155699.mlab.com:55699/yelp_camp
+
+//mongo ds155699.mlab.com:55699/yelp_camp -u admin -p admin
+var mongoose = require('mongoose')
 var Campground = require('./model/campground')
 var Comment = require('./model/comment')
 
@@ -7,7 +10,7 @@ var data = [
     name: 'Wakajaye House',
     image: 'https://cdn.pixabay.com/photo/2017/10/28/23/18/indians-2898463__340.jpg',
     description: 'The first abode, daddy built her but now we are runnning from her in search of survival.'
-  }, 
+  },
   {
     name: 'Abuja Crib',
     image: 'https://cdn.pixabay.com/photo/2018/03/15/13/36/bike-3228237__340.jpg',
