@@ -9,8 +9,6 @@ var Comment = require('./model/comment')
 var User = require('./model/user')
 var seedDB = require('./seed')
 
-require('dotenv').config()
-
 const commentRoutes = require('./routes/comments')
 const campgroundRoutes = require('./routes/campgrounds')
 const indexRoutes = require('./routes/index')
