@@ -53,7 +53,7 @@ Each Campground has :
 * Use module.exports
 * Require everything correctly!
 
-## Add the Comment model!
+## Add the Comment model
 
 * Make our error go away!
 * Display comments on campground show page
@@ -121,4 +121,33 @@ Add custom stylesheet
 * Add Edit Route for Campgrounds
 * Add Link to Edit Page
 * Add Update Route
-* Fix $set problem
+* Fix `$set` problem
+
+## Deleting Campgrounds
+
+* Add Destroy route
+* Add Delete button
+
+## Authorization
+
+* User can only edit his/her campgrounds
+* User can only delete his/her campgrounds
+* Hide/Show edit and delete buttons
+
+## Editing Comments
+
+* Add Edit route for comments
+* Add Edit button
+* Add Update route
+
+## Deleting Comments
+
+* Add Destroy route
+* Add Delete button
+
+## Authorization for Comments
+
+* User can only edit his/her comments
+* User can only delete his/her comments
+* Hide/Show edit and delete buttons
+* Refactor Middleware
