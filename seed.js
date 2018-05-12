@@ -1,11 +1,11 @@
 //mongodb://admin:admin@ds155699.mlab.com:55699/yelp_camp
 
 //mongo ds155699.mlab.com:55699/yelp_camp -u admin -p admin
-var mongoose = require('mongoose')
-var Campground = require('./model/campground')
-var Comment = require('./model/comment')
+const mongoose = require('mongoose')
+const Campground = require('./model/campground')
+const Comment = require('./model/comment')
 
-var data = [
+const data = [
   {
     name: 'Wakajaye House',
     image: 'https://cdn.pixabay.com/photo/2017/10/28/23/18/indians-2898463__340.jpg',

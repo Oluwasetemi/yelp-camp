@@ -1,3 +1,30 @@
+body {
+  max-height: 100vh;
+}
+
 #delete-form {
   display: inline;
+}
+
+#center {
+  text-align: center;
+}
+
+#card__center {
+  width: 40%;
+  margin: 5vh auto;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: fuchsia;
+  color: white;
+  width: 100%;
+  text-align: center;
+  opacity: 0.8;
+}
+footer p {
+  padding-top: 6px;
 }

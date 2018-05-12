@@ -2,14 +2,14 @@
 
   <div class="container">
     <h1 id="center">
-      Add New Comment to
-      <%= campground.name %>
+      Edit Comment on
+      
     </h1>
     <div class="row">
       <div id="card__center">
-        <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
+        <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
           <div class="form-group">
-            <input class="form-control" type="text" name="comment[text]" id="text" placeholder="Enter the comment text">
+            <input class="form-control" type="text" name="comment[text]" id="text" placeholder="Enter the comment text" value="<%= comment.text %>">
           </div>
           <!-- <div class="form-group">
                 <input class="form-control" type="text" name="comment[author]" id="author" placeholder="Enter the author">
