@@ -1,15 +1,16 @@
 require('dotenv').config({ path: 'variables.env' })
-var express = require("express");
-var bodyParser = require("body-parser");
-var app = express();
-var mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
+const methodOverride = require('method-override')
+const app = express();
+const mongoose = require("mongoose");
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 
-var Campground = require('./model/campground')
-var Comment = require('./model/comment')
-var User = require('./model/user')
-var seedDB = require('./seed')
+const Campground = require('./model/campground')
+const Comment = require('./model/comment')
+const User = require('./model/user')
+const seedDB = require('./seed')
 
 const commentRoutes = require('./routes/comments')
 const campgroundRoutes = require('./routes/campgrounds')
@@ -26,6 +27,7 @@ mongoose.connection.on('error', (err) => {
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
+app.use(methodOverride('_method'))
 
 // seedDB();
 
