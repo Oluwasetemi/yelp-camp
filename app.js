@@ -1,10 +1,11 @@
-require('dotenv').config()
+require('dotenv').config({ path: 'variables.env' })
 var express = require("express");
 var bodyParser = require("body-parser");
 var app = express();
 var mongoose = require("mongoose");
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
+
 var Campground = require('./model/campground')
 var Comment = require('./model/comment')
 var User = require('./model/user')
@@ -14,17 +15,16 @@ const commentRoutes = require('./routes/comments')
 const campgroundRoutes = require('./routes/campgrounds')
 const indexRoutes = require('./routes/index')
 
-if (process.env.DB_HOST) {
-  mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}`);
-} else {
-  mongoose.connect("mongodb://localhost/yelp_camp");
+
+
+mongoose.connect(process.env.DATABASE_production)
+mongoose.connection.on('error', (err) => {
+  console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 }
+)
 
-
-/* mongoose.connect('mongodb://admin:admin@ds155699.mlab.com:55699/yelp_camp');
- */
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
 
 // seedDB();
@@ -55,6 +55,6 @@ app.use('/campgrounds', campgroundRoutes)
 app.use('/campgrounds/:id/comments', commentRoutes)
 
 
-app.listen(3000, () => {
-  console.log("App listening on port 3000!");
+app.listen(process.env.PORT, () => {
+  console.log(`App listening on port ${process.env.PORT}`);
 });

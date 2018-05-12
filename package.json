@@ -4,8 +4,8 @@
   "description": "web developer project from udemy",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "node app.js",
+    "start": "nodemon app.js --names \"💻,📦\" --prefix names"
   },
   "repository": {
     "type": "git",
