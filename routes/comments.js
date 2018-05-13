@@ -3,7 +3,7 @@ const router = express.Router({mergeParams: true})
 const middleware = require('../middleware')
 
 const Campground = require('../models/campground')
-const Comment = require('../model/comment')
+const Comment = require('../models/comment')
 
 router.get('/new', middleware.isLoggedIn, (req, res) => {
   const {id} = req.params;
