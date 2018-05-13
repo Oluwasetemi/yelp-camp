@@ -2,8 +2,8 @@
 
 //mongo ds155699.mlab.com:55699/yelp_camp -u admin -p admin
 const mongoose = require('mongoose')
-const Campground = require('./model/campground')
-const Comment = require('./model/comment')
+const Campground = require('./models/campground')
+const Comment = require('./models/comment')
 
 const data = [
   {

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-const Campground = require('../model/campground')
+const Campground = require('../models/campground')
 const middleware = require('../middleware')
 
 

@@ -1,5 +1,5 @@
-const Campground = require('../model/campground')
-const Comment = require('../model/comment')
+const Campground = require('../models/campground')
+const Comment = require('../models/comment')
 const middlewareObj = {}
 
 middlewareObj.checkCampgroundOwnerShip = function() {

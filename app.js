@@ -7,9 +7,9 @@ const mongoose = require("mongoose");
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 
-const Campground = require('./model/campground')
-const Comment = require('./model/comment')
-const User = require('./model/user')
+const Campground = require('./models/campground')
+const Comment = require('./models/comment')
+const User = require('./models/user')
 const seedDB = require('./seed')
 
 const commentRoutes = require('./routes/comments')
