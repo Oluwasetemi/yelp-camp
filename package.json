@@ -2,6 +2,9 @@
   "name": "yelp-camp",
   "version": "1.0.2",
   "description": "web developer project from udemy",
+  "now": {
+    "dotenv": "variables.env.now"
+  }
   "main": "app.js",
   "scripts": {
     "prod": "node app.js",
