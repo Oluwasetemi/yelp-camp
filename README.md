@@ -1,5 +1,37 @@
 # What I need to do YelpCamp Project
 
+<!-- TOC -->
+
+* [What I need to do YelpCamp Project](#what-i-need-to-do-yelpcamp-project)
+  * [Layout and Basic Styling](#layout-and-basic-styling)
+  * [Creating New Campgrounds](#creating-new-campgrounds)
+  * [Style the campgrounds Page](#style-the-campgrounds-page)
+  * [Style the Navbar and form](#style-the-navbar-and-form)
+  * [Add Mongoose](#add-mongoose)
+  * [Show Page](#show-page)
+  * [Refactor Mongoose](#refactor-mongoose)
+  * [Add the Comment model](#add-the-comment-model)
+  * [Comment New/ Create](#comment-new--create)
+  * [Style Show page](#style-show-page)
+  * [Finish Styling Show Page](#finish-styling-show-page)
+  * [Auth Part 1 - Add Use model](#auth-part-1---add-use-model)
+  * [Auth Part 2 - Register](#auth-part-2---register)
+  * [Auth Part 3 - Login](#auth-part-3---login)
+  * [Auth Part 4 - Logout/ Navbar](#auth-part-4---logout--navbar)
+  * [Auth Part 5 - Show/ Hide links](#auth-part-5---show--hide-links)
+  * [Refactor The Routes](#refactor-the-routes)
+  * [Users + Comments](#users-comments)
+  * [Users + Campgrounds](#users-campgrounds)
+  * [Editing Campgrounds](#editing-campgrounds)
+  * [Deleting Campgrounds](#deleting-campgrounds)
+  * [Authorization](#authorization)
+  * [Editing Comments](#editing-comments)
+  * [Deleting Comments](#deleting-comments)
+  * [Authorization for Comments](#authorization-for-comments)
+  * [Create an Admin](#create-an-admin)
+
+<!-- /TOC -->
+
 * Add landing Page
 * Add Campgrounds from Page that list all Campgrounds
 
@@ -7,9 +39,21 @@ Each Campground has :
 
 * Name
 * Image
+* description
 
 ```json
-[{ "name": "", "image": "" }, { "name": "", "image": "" }]
+[
+  {
+    "name": "",
+    "image": "",
+    "description": ""
+  },
+  {
+    "name": "",
+    "image": "",
+    "description": ""
+  }
+]
 ```
 
 ## Layout and Basic Styling
@@ -151,3 +195,11 @@ Add custom stylesheet
 * User can only delete his/her comments
 * Hide/Show edit and delete buttons
 * Refactor Middleware
+
+<!-- TODO! -->
+
+## Create an Admin
+
+* Embed the `isAdmin` on the user model.
+* Give the admin the power to `edit` and `delete` any camp or comment.
+* Add to controller.

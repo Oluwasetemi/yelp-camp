@@ -4,11 +4,11 @@
   "description": "web developer project from udemy",
   "now": {
     "dotenv": "variables.env.now"
-  }
+  },
   "main": "app.js",
   "scripts": {
-    "prod": "node app.js",
-    "start": "nodemon app.js --names \"💻,📦\" --prefix names"
+    "start": "node app.js",
+    "dev": "nodemon app.js --names \"💻,📦\" --prefix names"
   },
   "repository": {
     "type": "git",
