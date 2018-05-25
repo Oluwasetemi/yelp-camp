@@ -1,6 +1,6 @@
 {
   "name": "yelp-camp",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "description": "web developer project from udemy",
   "main": "app.js",
   "scripts": {

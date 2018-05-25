@@ -17,9 +17,9 @@ const commentRoutes = require('./routes/comments')
 const campgroundRoutes = require('./routes/campgrounds')
 const indexRoutes = require('./routes/index')
 
+const dbUrl = process.env.DATABASE_production || 'mongodb://localhost/yelp_camp'
 
-
-mongoose.connect(process.env.DATABASE_production)
+mongoose.connect(dbUrl)
 mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 }
