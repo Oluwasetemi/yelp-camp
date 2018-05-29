@@ -28,3 +28,9 @@ footer {
 footer p {
   padding-top: 6px;
 }
+
+/* Google Maps */
+#map {
+  height: 400px;
+  width: 100%;
+}

@@ -3,12 +3,14 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3 pt-4">
-        <p class="lead">side bar</p>
-        <div class="list-group">
+        <p class="lead"><%= %> campgrounds</p>
+        <div class="list-group mb-4">
+          
           <li class="list-group-item active">list 1</li>
           <li class="list-group-item">list 2</li>
           <li class="list-group-item">list 3</li>
         </div>
+        <div id="map"></div>
       </div>
       <div class="col-md-9 pt-4">
         <div class="card">
@@ -26,7 +28,7 @@
             </p>
             <p class="card-text">
               <em>Submitted By
-                <%= campground.author.username %>
+                <a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a> - <%= moment(campground.createdAt).fromNow() %>
               </em>
             </p>
             <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
@@ -46,8 +48,10 @@
             <% campground.comments.forEach((comment) => { %>
               <div class="row">
                 <div class="col-md-12">
-                  <%= comment.author.username %>
-                    <p class="text-right">10 days ago</p>
+                  <%= comment.author.username %> 
+                    <p class="text-right">
+                      <%= moment(comment.createdAt).fromNow() %>
+                    </p>
                     <p>
                       <%= comment.text %>
                     </p>
@@ -67,6 +71,33 @@
 
     </div>
 
-
+    <script>
+      function initMap() {
+        var lat = <%= campground.lat %>;
+        var lng = <%= campground.lng %>;
+        var center = {lat: lat, lng: lng };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: center,
+            scrollwheel: false
+        });
+        var contentString = `
+          <strong><%= campground.name %><br />
+          <%= campground.location %></strong>
+          <p><%= campground.description %></p>
+        `
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        var marker = new google.maps.Marker({
+            position: center,
+            map: map
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnooM5PVWi2gKUmnHOjLECp2hAkrX2FYQ&callback=initMap"></script>
 
     <% include ../partials/footer %>

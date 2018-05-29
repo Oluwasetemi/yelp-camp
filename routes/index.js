@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router();
 const passport = require('passport')
+const md5 = require('md5')
 const User = require('../models/user')
+const Campground = require('../models/campground')
 
 router.get("/", (req, res) => {
   res.render("home");
@@ -13,7 +15,10 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-  const newUser = new User({username: req.body.username})
+  const hash = md5(req.body.email.trim().toLowerCase())
+  const avatar = `https://www.gravatar.com/avatar/${hash}`
+  const {username, firstName, lastName, email} = req.body
+  const newUser = new User({username, firstName, lastName, email, avatar})
   if (req.body.adminCode === 'secret') {
     newUser.isAdmin = true
   }
@@ -49,6 +54,22 @@ router.get('/logout', (req, res) => {
   req.flash('success', 'Logged you out')
   res.redirect('/campgrounds')
 });
+
+router.get('/users/:id', (req, res) => {
+  User.findById(req.params.id, (err, user) => {
+    if (err) {
+      req.flash('error', 'Something went wrong')
+      res.redirect('/')
+    }
+    Campground.find().where('author.id').equals(user._id).exec((err, campgrounds) => {
+      if (err) {
+        req.flash('error', 'Something went wrong')
+        res.redirect('/')
+      }
+      res.render('user/show', { user, campgrounds })
+    })
+  })
+})
 
 
 module.exports = router
