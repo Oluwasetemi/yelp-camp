@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "web developer project from udemy",
   "now": {
-    "dotenv": "variables.env.now"
+    "dotenv": "letiables.env.now"
   },
   "main": "app.js",
   "scripts": {
@@ -34,6 +34,7 @@
     "moment": "^2.22.1",
     "mongoose": "^5.0.12",
     "node-geocoder": "^3.22.0",
+    "nodemailer": "^4.6.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.0"

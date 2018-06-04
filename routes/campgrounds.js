@@ -4,16 +4,16 @@ const router = express.Router()
 const Campground = require('../models/campground')
 const middleware = require('../middleware')
 
-var NodeGeocoder = require('node-geocoder')
+let NodeGeocoder = require('node-geocoder')
 
-var options = {
+let options = {
 	provider: 'google',
 	httpAdapter: 'https',
 	apiKey: process.env.GEOCODER_API_KEY,
 	formatter: null
 }
 
-var geocoder = NodeGeocoder(options)
+let geocoder = NodeGeocoder(options)
 
 
 router.get('/', (req, res) => {
@@ -68,9 +68,9 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
 			req.flash('error', 'Invalid address')
 			return res.redirect('back')
 		}
-		var lat = data[0].latitude
-		var lng = data[0].longitude
-		var location = data[0].formattedAddress
+		let lat = data[0].latitude
+		let lng = data[0].longitude
+		let location = data[0].formattedAddress
 
 		const newCampground = {
 			name: name,

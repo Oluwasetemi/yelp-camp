@@ -222,7 +222,7 @@ Add custom stylesheet
 ## Add Google Maps
 
 * Get Map Key and add to t
-  he `env` variable
+  he `env` letiable
 * Add Google Maps scripts to your application
 * Display the campground location in show.ejs
 * Update campground model
