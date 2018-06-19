@@ -11,7 +11,7 @@ const flash = require('connect-flash')
 const Campground = require('./models/campground')
 const Comment = require('./models/comment')
 const User = require('./models/user')
-const seedDB = require('./seed')
+// const seedDB = require('./seed')
 
 const commentRoutes = require('./routes/comments')
 const campgroundRoutes = require('./routes/campgrounds')

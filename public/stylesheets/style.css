@@ -34,3 +34,29 @@ footer p {
   height: 400px;
   width: 100%;
 }
+
+.search {
+
+}
+
+.search__results {
+  text-align: center;
+  background: white;
+  /* height: 10vh; */
+  position: absolute;
+  width: 40%;
+  top: 100%;
+  left: 40%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+  margin-bottom: 25px;
+  /* display: block; */
+}
+
+.search__results >a {
+  display: block
+}
+
+.search__result--active {
+  background: #f1f1f1;
+}

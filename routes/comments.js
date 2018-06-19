@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router({mergeParams: true})
 const middleware = require('../middleware')
-
-const Campground = require('../models/campground')
-const Comment = require('../models/comment')
+const mongoose = require('mongoose')
+const Campground = mongoose.model('Campground')
+const Comment = mongoose.model('Comment')
 
 router.get('/new', middleware.isLoggedIn, (req, res) => {
   const {id} = req.params;
@@ -22,12 +22,12 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
   Campground.findById(id,  (err, campground) => {
     if (err) {
       console.log(err);
-      res.redirect('campgrounds')      
+      res.redirect('campgrounds')
     } else {
       Comment.create(comment, (err, comment) => {
         if (err) {
           req.flash('error', 'Comment not found')
-          console.log(err)  
+          console.log(err)
         } else {
           comment.author.id = req.user._id
           comment.author.username = req.user.username
@@ -38,7 +38,7 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
           res.redirect('/campgrounds/'+campground._id)
         }
       })
-    }  
+    }
   });
 })
 

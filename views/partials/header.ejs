@@ -23,8 +23,9 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <form action="/campgrounds" method="GET" class="form-inline ml-auto my-2 my-sm-0" >
-            <div class="form-group">
-              <input type="text" name="search" placeholder="Campground Search....." class="form-control mr-sm-2">
+            <div class="form-group search">
+              <input type="text" name="search" placeholder="Campground Search....." class="form-control mr-sm-2" autocomplete="off">
+              <div class="search__results"></div>
               <input type="button" value="Search" class="btn btn-default my-2 my-sm-0" >
             </div>
           </form>
