@@ -7,6 +7,14 @@ const async = require('async')
 const nodemailer = require('nodemailer')
 const crypto = require('crypto')
 
+let smtpTransport = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'tiphen101@gmail.com',
+    pass: process.env.GMAILPW
+  }
+})
+
 const User = mongoose.model('User')
 const Campground = mongoose.model('Campground')
 
@@ -74,64 +82,117 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/forgot', (req, res) => {
-  res.render('password-reset')
+  res.render('forgot')
 })
 
 router.post('/forgot', (req, res, next) => {
-  /* async.waterfall([
-    function (done) {
-      crypto.randomBytes(20, (err, buf) => {
-        let token = buf.toString('hex')
-        done(err, token)
-      })
-    },
-    function (token, done) {
-      User.findOne({
-        email: req.body.email
-      }), (err, user) => {
-        if (!user) {
-          req.flash('error', 'No account with that email address exists')
-          return res.redirect('/forgot')
-        }
+  User.findOne({
+    email: req.body.email
+  }, (err, user) => {
+    if (!user) {
+      req.flash('error', 'No account with that email address exists')
+      return res.redirect('/forgot')
+    }
 
-        user.resetPasswordToken = token
-        user.resetPasswordExpires = Date.now() + 3600000
+    user.resetPasswordToken = crypto.randomBytes(20).toString('hex')
+    user.resetPasswordExpires = Date.now() + 3600000
+    console.log(user)
 
-        console.log(user)
-        user.save((err) => {
-          done(err, token, user)
-        })
-      }
-    },
-    function (token, user, done) {
-      console.log('req.body.email')
-      let smtpTransport = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          user: 'tiphen101@gmail.com',
-          pass: process.env.GMAILPW
-        }
-      })
-      let mailOptions = {
-        to: user.email,
-        from: 'tiphen101@gmail.com',
-        subject: 'Node.js Password Reset',
-        text: `You are receiving this because you (or someone else) have requested the reset of the password.
-        http://${req.headers.host}/reset/${token}
-        If you did not request this, please ignore this email and your password will remain unchanged`
-      }
+    let mailOptions = {
+      to: user.email,
+      from: 'tiphen101@gmail.com',
+      subject: 'Node.js Password Reset',
+      text: `You are receiving this because you (or someone else) have requested the reset of the password.
+    http://${req.headers.host}/reset/${user.resetPasswordToken}
+    If you did not request this, please ignore this email and your password will remain unchanged`
+    }
 
-      smtpTransport.sendMail(mailOptions, (err) => {
+    user.save(() => console.log('i was saved'))
+
+    smtpTransport.sendMail(mailOptions, (err, success) => {
+      if (err) {
+        return console.log('cannot send email' + err)
+      } else {
+        console.log('Email Sent')
         req.flash('success', `An email has been sent to ${user.email} with further instructions`)
-        done(err, 'done')
-      })
-    },
-    function (err) {
-      if (err) return next(err)
-      console.log('done')
+      }
+    })
+    if (err) return next(err)
+    req.flash('success', `An email has been sent to ${user.email} with further instructions`)
+    console.log('sending email......')
+    res.redirect('/forgot')
+  })
+})
+
+router.get('/reset/:token', (req, res) => {
+  User.findOne({
+    resetPasswordToken: req.params.token,
+    resetPasswordExpires: {
+      $gt: Date.now()
+    }
+  }, (err, user) => {
+    if (!user) {
+      req.flash('error', 'Password Reset token is invalid or has expired.')
       res.redirect('/forgot')
     }
-  ]) */
+    res.render('reset', {
+      token: req.params.token
+    })
+  })
+})
+
+router.post('/reset/:token', (req, res, next) => {
+  User.findOne({
+    resetPasswordToken: req.params.token,
+    resetPasswordExpires: {
+      $gt: Date.now()
+    }
+  }, (err, user) => {
+    if (!user) {
+      req.flash('error', 'Password Reset token is invalid or has expired.')
+      res.redirect('/back')
+    }
+    if (req.body.password === req.body.confirm) {
+      user.setPassword(req.body.password, (err) => {
+        if (err) return console.log('Cannot complete password change')
+        user.resetPasswordToken = undefined
+        user.resetPasswordExpires = undefined
+
+        user.save(() => {
+          console.log('new user saved')
+        })
+        req.logIn(user, (err) => {
+          if (err) {
+            console.error('cannot sign in')
+          } else {
+            let mailOptions = {
+              to: user.email,
+              from: 'tiphen101@gmail.com',
+              subject: 'Your Password has been changed',
+              text: `
+                  Hello,
+                  This is a confirmation that the password for your account has been changed.
+                  Regards.  `
+            }
+            smtpTransport.sendMail(mailOptions, (err, success) => {
+              if (err) {
+                console.error('can not send mail')
+              } else {
+                req.flash('success', 'Email sent.')
+              }
+            })
+
+            req.flash('success', 'Success! Your password has been changed.')
+            res.redirect('/campgrounds')
+          }
+        })
+      })
+    } else {
+      req.flash('error', 'Passowrds do not match')
+      return res.redirect('back')
+    }
+  })
+
 })
 
 router.get('/users/:id', (req, res) => {
@@ -154,20 +215,30 @@ router.get('/users/:id', (req, res) => {
 })
 
 router.get('/api/search', function (req, res) {
-  Campground.find(
-    { $text: { $search: req.query.q } },
-    { score: { $meta: 'textScore' } })
-    .sort({ score: { $meta: 'textScore' } })
+  Campground.find({
+      $text: {
+        $search: req.query.q
+      }
+    }, {
+      score: {
+        $meta: 'textScore'
+      }
+    })
+    .sort({
+      score: {
+        $meta: 'textScore'
+      }
+    })
     .limit(5)
     .exec(
-     (err, foundCampground) => {
-      if (!err) {
-        res.json(foundCampground)
-      } else {
-        console.log(err)
+      (err, foundCampground) => {
+        if (!err) {
+          res.json(foundCampground)
+        } else {
+          console.log(err)
+        }
       }
-    }
-  )
+    )
 })
 
 

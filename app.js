@@ -22,8 +22,7 @@ const dbUrl = process.env.DATABASE_production || 'mongodb://localhost/yelp_camp'
 mongoose.connect(dbUrl)
 mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
-}
-)
+})
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }))
