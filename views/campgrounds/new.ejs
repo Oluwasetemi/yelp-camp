@@ -5,22 +5,22 @@
     <div class="row">
 
       <div style="width: 30%; margin: 20px auto">
-        <form action="/campgrounds" method="post">
+        <form action="/campgrounds" method="post" enctype="multipart/form-data">
           <div class="form-group">
-            <input class="form-control" type="text" name="name" id="name" placeholder="Enter the camp Name">
+            <input class="form-control" type="text" name="campground[name]" id="name" placeholder="Enter the camp Name" required>
           </div>
           <div class="form-group">
-            <input class="form-control" type="number" name="price" id="price" placeholder="Enter the camp Price" min="0.01" step="0.01" >
+            <input class="form-control" type="number" name="campground[price]" id="price" placeholder="Enter the camp Price" min="0.01" step="0.01" >
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" name="image" id="image" placeholder="Enter the image link">
+            <input class="form-control" type="file" name="image" id="image" placeholder="Enter the image link" accept="image/*" required>
           </div>
           <div class="form-group">
             <label for="location">Location</label>
-            <input class="form-control" type="text" name="location" id="location" placeholder="Yosemite National Park, CA">
+            <input class="form-control" type="text" name="campground[location]" id="location" placeholder="Yosemite National Park, CA">
           </div>
           <div class="form-group">
-            <input class="form-control" type="text" name="description" id="description" placeholder="Enter the description of the camp">
+            <input class="form-control" type="text" name="campground[description]" id="description" placeholder="Enter the description of the camp">
           </div>
           <div class="form-group">
             <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
