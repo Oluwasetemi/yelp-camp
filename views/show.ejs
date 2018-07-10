@@ -3,3 +3,7 @@
 <h1> <%= campground.name %> </h1>
 <img src="<%= campground.image %>" alt="a dynamic image">
 <p><%= campground.description %></p>
+<a href="/campgrounds/<%= campground.id %>/edit">UPDATE</a>
+<form action="/campgrounds/<%= campground.id %>?_method=DELETE" method="post">
+  <button>DELETE</button>
+</form>
