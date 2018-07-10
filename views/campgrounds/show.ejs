@@ -5,7 +5,7 @@
       <h1>This is a show Page</h1>
       <br/>
       <div class="card">
-        
+
       </div>
     </div>
   </div>
@@ -19,6 +19,8 @@
   </p>
 
   <img src="<%= campground.image %>" alt="campground">
+
+  <a class="btn btn-primary" href="/campgrounds/<%= campground.id %>/comments/new">Add New Comment</a>
 
   <%  campground.comments.forEach((comment) => { %>
     <p>

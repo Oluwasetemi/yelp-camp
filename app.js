@@ -49,7 +49,7 @@ app.post("/campgrounds", (req, res) => {
 app.get('/campgrounds/:id', (req, res) => {
   Campground.findById(req.params.id).populate('comments').exec((err, foundCampground) => {
     if (err) {
-      console.log('err'); 
+      console.log('err');
     } else {
       console.log(foundCampground);
       res.render('campgrounds/show', {campground: foundCampground})
@@ -77,19 +77,19 @@ app.post('/campgrounds/:id/comments', (req, res) => {
   Campground.findById(id,  (err, campground) => {
     if (err) {
       console.log(err);
-      res.redirect('campgrounds')      
+      res.redirect('campgrounds')
     } else {
       const {comment} = req.body
       Comment.create(comment, (err, comment) => {
         if (err) {
-          console.log(err)  
+          console.log(err)
         } else {
           campground.comments.push(comment)
           campground.save();
           res.redirect('/campgrounds')
         }
       })
-    }  
+    }
   });
 })
 app.listen(3000, () => {
